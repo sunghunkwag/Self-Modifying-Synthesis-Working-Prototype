@@ -1,40 +1,29 @@
 # Self-Modifying Synthesis Working Prototype
-> **Spontaneous Cognitive Evolution Engine**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-Verified_Organic-green.svg)
+**Status: Research Prototype / Work in Progress**
 
-## 🧬 Overview
-Organic Intelligence is a specialized Neuro-Symbolic AI engine capable of **Self-Modifying Code Synthesis**. Unlike traditional program synthesizers that rely on fixed heuristics, this system:
-1.  **Evolves its own Language**: Discovers and adds new operators (`Op0`, `Op1`...) to its grammar at runtime.
-2.  **Learns from History**: Uses Anti-Unification (Stitch) to compress successful problem-solving patterns into reusable functions.
-3.  **Self-Criticizes**: Generates adversarial tasks to probe its own weaknesses and force evolution.
+## Abstract
+This repository contains a working prototype of a self-modifying neuro-symbolic engine. The system integrates bottom-up synthesis with unsupervised library learning (Stitch). It demonstrates the capability to spontaneously discover and add new operators to its domain-specific language (DSL) during runtime, without hardcoded templates or human intervention.
 
-**"No Cheats" Certified**: This codebase has been audited to ensure no hardcoded templates or logical shortcuts exist. All intelligence is emergent.
+## Core Mechanisms
+1.  **Bottom-Up Synthesis**: Enumerates ASTs to solve input/output examples.
+2.  **Anti-Unification (Stitch)**: Compresses successful programs into reusable higher-order functions (abstractions).
+3.  **Dynamic Grammar Evolution**: Updates the DSL at runtime with discovered abstractions.
+4.  **Self-Critic**: Generates adversarial tasks to verify the generalization of discovered abstractions.
 
-## 🚀 Key Features
-*   **Deep Abstraction**: Spontaneously discovers lambda functions (e.g., `f(x) = x + 1`) from raw examples.
-*   **Dynamic Arity**: Infers argument counts for new operators automatically.
-*   **Adversarial Loop**: `SelfCritic` module challenges the `Synthesizer` with "Anti-Tasks".
-*   **Verified Organic**: Demonstrated evolution of 12+ new operators in a single unguided run.
-
-## 🛠️ Usage
+## Usage
 
 ### Prerequisites
-- Python 3.8+
-- No external heavy dependencies (Pure Python logic).
+- Python 3.8 or higher
 
-### Running the Organic Test
-To witness spontaneous evolution:
+### Replication
+Run the verification script to observe the unguided evolution of operators:
+
 ```bash
 python verify_organic.py
 ```
-*   **Expected Output**: The system will start from scratch (Arithmetics) and slowly invent concepts like "Square", "Double", and "Increment", eventually reaching `Grammar v10+`.
 
-## 📂 Structure
-- `core.py`: The single-file cognitive engine (Synthesizer, Interpreter, Mutator, Critic).
-- `verify_organic.py`: Rigorous verification script (No seeding, 30 cycles).
-- `AUDIT.md`: Formal audit report confirming the absence of hardcoded heuristics.
+This script runs a 30-cycle evolution loop starting from basic arithmetic primitives.
 
-## 📜 License
-MIT License. Created by AntiGravity Agent.
+## License
+MIT License.
