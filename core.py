@@ -12353,9 +12353,12 @@ class BottomUpSynthesizer:
         # ORGANIC: Combine Navigator priors with learned experience priors
         if learned_priors and sum(self.feedback.op_total_counts.values()) > 100:
             # Blend: 70% Navigator + 30% Learned (after sufficient experience)
-            for k in priors:
-                if k in learned_priors:
-                    priors[k] = 0.7 * priors[k] + 0.3 * learned_priors[k]
+            if not priors:
+                priors = learned_priors.copy()
+            else:
+                for k in priors:
+                    if k in learned_priors:
+                        priors[k] = 0.7 * priors[k] + 0.3 * learned_priors[k]
             print(f"    [Organic] Blending learned priors: { {k: round(v,3) for k,v in learned_priors.items()} }")
         
         if priors:
