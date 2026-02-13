@@ -1,0 +1,301 @@
+============================================================
+   🧬 FINAL ORGANIC EVOLUTION TEST (30 Cycles)
+   Condition: NO SEEDING, STRICT THRESHOLDS, COMPLEX TASKS
+============================================================
+
+[Cycle 1/30] Task: Linear n+1
+  > Grammar: []
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+      [Success] Found solution at Depth 0: (1 + n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 2/30] Task: Linear n+2
+  > Grammar: []
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+      [Depth 0] Candidates: 30 | Pruned: 22 | New Behaviors: 8 | Total Bank: 11
+      [Success] Found solution at Depth 1: (1 + (1 + n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 3/30] Task: Linear n+3
+  > Grammar: []
+    [Organic] Blending learned priors: {'+': 0.105, '-': 0.067, '*': 0.083, 'Rec': 0.333, 'Arg': 0.091, 'Const': 0.05}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->3)...
+      [Depth 0] Candidates: 30 | Pruned: 21 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: (n + Rec(0))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+
+[Cycle 4/30] Task: Square n*n
+  > Grammar: []
+    [Organic] Blending learned priors: {'+': 0.054, '-': 0.028, '*': 0.042, 'Rec': 0.286, 'Arg': 0.044, 'Const': 0.029}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+      [Success] Found solution at Depth 0: (n * n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 5/30] Task: Square+1 n*n+1
+  > Grammar: []
+    [Organic] Blending learned priors: {'+': 0.05, '-': 0.022, '*': 0.061, 'Rec': 0.286, 'Arg': 0.056, 'Const': 0.024}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+      [Depth 0] Candidates: 30 | Pruned: 21 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: (1 + (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 6/30] Task: Square+2 n*n+2
+  > Grammar: []
+    [Organic] Blending learned priors: {'+': 0.043, '-': 0.016, '*': 0.068, 'Rec': 0.222, 'Arg': 0.056, 'Const': 0.021}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+[GrammarMutator] Discovered Abstraction: Op0 = (1 + $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op0 = (1 + $0)
+[MetaState] Evolved Grammar v1: Added operator 'Op0'
+      [Depth 0] Candidates: 33 | Pruned: 25 | New Behaviors: 8 | Total Bank: 11
+      [Success] Found solution at Depth 1: ((1 + 1) + (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 7/30] Task: Quartic n^4
+  > Grammar: ['Op0']
+    [Organic] Blending learned priors: {'+': 0.037, '-': 0.011, '*': 0.07, 'Rec': 0.2, 'Arg': 0.048, 'Const': 0.019}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+[GrammarMutator] Discovered Abstraction: Op1 = ($0 + $1) (Arity 2)
+    [Meta-Hypothesis] Proposed Abstraction: Op1 = ($0 + $1)
+[MetaState] Evolved Grammar v2: Added operator 'Op1'
+      [Depth 0] Candidates: 42 | Pruned: 33 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: ((n * n) * (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 8/30] Task: Linear n+1
+  > Grammar: ['Op0', 'Op1']
+    [Organic] Blending learned priors: {'+': 0.014, '-': 0.002, '*': 0.026, 'Rec': 0.029, 'Arg': 0.016, 'Const': 0.007}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+[GrammarMutator] Discovered Abstraction: Op2 = $0 (Arity 2)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = $0
+[MetaState] Evolved Grammar v3: Added operator 'Op2'
+      [Success] Found solution at Depth 0: (1 + n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: n (Len: 1)
+    [Organic] Blending learned priors: {'+': 0.015, '-': 0.002, '*': 0.026, 'Rec': 0.029, 'Arg': 0.017, 'Const': 0.007}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+[GrammarMutator] Discovered Abstraction: Op3 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op3 = ($0 * $0)
+[MetaState] Evolved Grammar v4: Added operator 'Op3'
+      [Depth 0] Candidates: 48 | Pruned: 39 | New Behaviors: 9 | Total Bank: 12
+      [Depth 1] Candidates: 624 | Pruned: 560 | New Behaviors: 64 | Total Bank: 76
+[GrammarMutator] Discovered Abstraction: Op4 = ($0 + ($0 * $0)) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op4 = ($0 + ($0 * $0))
+[MetaState] Evolved Grammar v5: Added operator 'Op4'
+[Self-Critic] SUCCESS: Generator TIMED OUT. n
+  [Critic] CHALLENGE INJECTED.
+  🌟 [EVOLUTION] System invented 3 new operator(s)!
+
+[Cycle 9/30] Task: Adversarial Challenge
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4']
+    [Organic] Blending learned priors: {'+': 0.006, '-': 0.007, '*': 0.003, 'Rec': 0.016, 'Arg': 0.005, 'Const': 0.007}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 51 | Pruned: 41 | New Behaviors: 10 | Total Bank: 13
+      [Depth 1] Candidates: 741 | Pruned: 656 | New Behaviors: 85 | Total Bank: 98
+      [Depth 2] Candidates: 38906 | Pruned: 34597 | New Behaviors: 4309 | Total Bank: 4407
+  [Error] Synthesis crashed: Synthesis timeout
+  [Result] FAILURE.
+
+[Cycle 10/30] Task: Linear n+2
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4']
+    [Organic] Blending learned priors: {'+': 0.006, '-': 0.006, '*': 0.003, 'Rec': 0.013, 'Arg': 0.005, 'Const': 0.006}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+      [Depth 0] Candidates: 51 | Pruned: 42 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: (1 + (1 + n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+
+[Cycle 11/30] Task: Linear n+3
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4']
+    [Organic] Blending learned priors: {'+': 0.006, '-': 0.006, '*': 0.003, 'Rec': 0.013, 'Arg': 0.005, 'Const': 0.006}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->3)...
+[GrammarMutator] Discovered Abstraction: Op5 = (1 + (1 + $0)) (Arity 0)
+    [Meta-Hypothesis] Proposed Abstraction: Op5 = (1 + (1 + $0))
+[MetaState] Evolved Grammar v6: Added operator 'Op5'
+      [Depth 0] Candidates: 54 | Pruned: 43 | New Behaviors: 11 | Total Bank: 14
+      [Success] Found solution at Depth 1: (1 + Op5(n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: n (Len: 1)
+    [Organic] Blending learned priors: {'+': 0.006, '-': 0.006, '*': 0.003, 'Rec': 0.013, 'Arg': 0.005, 'Const': 0.006}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 54 | Pruned: 42 | New Behaviors: 12 | Total Bank: 15
+      [Depth 1] Candidates: 990 | Pruned: 871 | New Behaviors: 119 | Total Bank: 134
+[Self-Critic] SUCCESS: Generator TIMED OUT. n
+  [Critic] CHALLENGE INJECTED.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 12/30] Task: Adversarial Challenge
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5']
+    [Organic] Blending learned priors: {'+': 0.006, '-': 0.006, '*': 0.003, 'Rec': 0.014, 'Arg': 0.005, 'Const': 0.006}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 54 | Pruned: 42 | New Behaviors: 12 | Total Bank: 15
+      [Depth 1] Candidates: 990 | Pruned: 871 | New Behaviors: 119 | Total Bank: 134
+      [Depth 2] Candidates: 50000 | Pruned: 41923 | New Behaviors: 8077 | Total Bank: 8211
+  [Error] Synthesis crashed: Synthesis timeout
+  [Result] FAILURE.
+
+[Cycle 13/30] Task: Square n*n
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+      [Success] Found solution at Depth 0: (n * n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: Op3() (Len: 5)
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=1->0)...
+      [Success] Found solution at Depth 0: Rec(0)
+      [Latent] Learning success pattern...
+[Self-Critic] Failed: Generator solved in 0.005s
+
+[Cycle 14/30] Task: Square+1 n*n+1
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+      [Depth 0] Candidates: 54 | Pruned: 42 | New Behaviors: 12 | Total Bank: 15
+      [Success] Found solution at Depth 1: (1 + (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 15/30] Task: Square+2 n*n+2
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+[GrammarMutator] Discovered Abstraction: Op6 = (1 + ($0 * $0)) (Arity 0)
+    [Meta-Hypothesis] Proposed Abstraction: Op6 = (1 + ($0 * $0))
+[MetaState] Evolved Grammar v7: Added operator 'Op6'
+      [Depth 0] Candidates: 57 | Pruned: 45 | New Behaviors: 12 | Total Bank: 15
+      [Success] Found solution at Depth 1: (1 + Op6(n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 16/30] Task: Quartic n^4
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 57 | Pruned: 44 | New Behaviors: 13 | Total Bank: 16
+      [Success] Found solution at Depth 1: ((n * n) * (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 17/30] Task: Linear n+1
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+[GrammarMutator] Discovered Abstraction: Op7 = (($0 * $0) * ($0 * $0)) (Arity 0)
+    [Meta-Hypothesis] Proposed Abstraction: Op7 = (($0 * $0) * ($0 * $0))
+[MetaState] Evolved Grammar v8: Added operator 'Op7'
+      [Success] Found solution at Depth 0: (1 + n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 18/30] Task: Linear n+2
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+      [Success] Found solution at Depth 0: Op5(n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: Op3() (Len: 5)
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=1->0)...
+      [Success] Found solution at Depth 0: Rec(0)
+      [Latent] Learning success pattern...
+[Self-Critic] Failed: Generator solved in 0.008s
+
+[Cycle 19/30] Task: Linear n+3
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->3)...
+[GrammarMutator] Discovered Abstraction: Op8 = Rec(0) (Arity 0)
+    [Meta-Hypothesis] Proposed Abstraction: Op8 = Rec(0)
+[MetaState] Evolved Grammar v9: Added operator 'Op8'
+      [Depth 0] Candidates: 61 | Pruned: 48 | New Behaviors: 13 | Total Bank: 16
+      [Success] Found solution at Depth 1: (1 + Op5(n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 20/30] Task: Square n*n
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7', 'Op8']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+[GrammarMutator] Discovered Abstraction: Op9 = (1 + Op5($0)) (Arity 0)
+    [Meta-Hypothesis] Proposed Abstraction: Op9 = (1 + Op5($0))
+[MetaState] Evolved Grammar v10: Added operator 'Op9'
+      [Success] Found solution at Depth 0: (n * n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: n (Len: 1)
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 64 | Pruned: 50 | New Behaviors: 14 | Total Bank: 17
+      [Depth 1] Candidates: 1310 | Pruned: 1110 | New Behaviors: 200 | Total Bank: 217
+[Self-Critic] SUCCESS: Generator TIMED OUT. n
+  [Critic] CHALLENGE INJECTED.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 21/30] Task: Adversarial Challenge
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7', 'Op8', 'Op9']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.01, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 64 | Pruned: 50 | New Behaviors: 14 | Total Bank: 17
+      [Depth 1] Candidates: 1310 | Pruned: 1110 | New Behaviors: 200 | Total Bank: 217
+      [Depth 2] Candidates: 50000 | Pruned: 40940 | New Behaviors: 9060 | Total Bank: 9277
+  [Error] Synthesis crashed: Synthesis timeout
+  [Result] FAILURE.
+
+[Cycle 22/30] Task: Square+1 n*n+1
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7', 'Op8', 'Op9']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.009, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+      [Success] Found solution at Depth 0: Op6(n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+
+[Cycle 23/30] Task: Square+2 n*n+2
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7', 'Op8', 'Op9']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.009, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+      [Depth 0] Candidates: 64 | Pruned: 51 | New Behaviors: 13 | Total Bank: 16
+      [Success] Found solution at Depth 1: (1 + Op6(n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 24/30] Task: Quartic n^4
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4', 'Op5', 'Op6', 'Op7', 'Op8', 'Op9']
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.009, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+[GrammarMutator] Discovered Abstraction: Op10 = (1 + Op6($0)) (Arity 0)
+    [Meta-Hypothesis] Proposed Abstraction: Op10 = (1 + Op6($0))
+[MetaState] Evolved Grammar v11: Added operator 'Op10'
+      [Success] Found solution at Depth 0: Op7(n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: n (Len: 1)
+    [Organic] Blending learned priors: {'+': 0.004, '-': 0.005, '*': 0.002, 'Rec': 0.009, 'Arg': 0.004, 'Const': 0.005}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+      [Depth 0] Candidates: 67 | Pruned: 53 | New Behaviors: 14 | Total Bank: 17
