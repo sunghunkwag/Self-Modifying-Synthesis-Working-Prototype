@@ -11707,7 +11707,6 @@ class GrammarMutator:
         self.history.append(expr)
 
     def prune_grammar(self, current_cycle: int):
-        if len(self.meta_state.abstractions) <= 100: return
 
         to_prune = []
         for name, expr in self.meta_state.abstractions.items():
@@ -11751,6 +11750,12 @@ class GrammarMutator:
             try:
                 def_expr = BSConverter.from_hrm(cand.body)
             except: continue
+
+            # Identity Check: Discard Op = $0
+            if isinstance(def_expr, BSArg) and def_expr.index == 0:
+                print(f"[GrammarMutator] Discarding Identity Op: {def_expr}")
+                continue
+
                 
             # Check if exists
             exists = False

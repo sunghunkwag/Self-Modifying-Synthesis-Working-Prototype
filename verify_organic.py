@@ -23,7 +23,7 @@ def run_organic_evolution(cycles=30):
     sidecar = HRMSidecar(registry, quick=True, guided=False)
     
     # RIGOROUS CONFIG
-    sidecar.synthesizer.max_candidates = 50000
+    sidecar.synthesizer.max_candidates = 10000
     sidecar.synthesizer.bank_cap = 1000 # Larger bank to allow statistical emergence
     sidecar.synthesizer.max_depth = 4
     
