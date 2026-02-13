@@ -11654,6 +11654,7 @@ class MetaState:
         # Initial primitive set
         self.atom_map = ["+", "-", "*", "Rec", "Arg", "Const"]
         self.abstractions = {} # Name -> BSExpr (e.g., 'Dec' -> (- n 1))
+        self.usage_history = {} # Name -> Last Cycle Used
         self.grammar_version = 0
 
     def add_abstraction(self, name: str, expr: 'BSExpr'):
@@ -11662,6 +11663,16 @@ class MetaState:
             self.atom_map.append(name)
             self.grammar_version += 1
             print(f"[MetaState] Evolved Grammar v{self.grammar_version}: Added operator '{name}'")
+    def remove_abstraction(self, name: str):
+        if name in self.abstractions:
+            del self.abstractions[name]
+            if name in self.atom_map:
+                self.atom_map.remove(name)
+            self.grammar_version += 1
+            print(f"[MetaState] Pruned operator '{name}'")
+
+    def record_usage(self, name: str, cycle: int):
+        self.usage_history[name] = cycle
 
     def get_arity(self, name: str) -> int:
         if name not in self.abstractions: return 0
@@ -11694,6 +11705,23 @@ class GrammarMutator:
     def add_solution(self, expr: 'BSExpr'):
         # Add verifiable solution to history
         self.history.append(expr)
+
+    def prune_grammar(self, current_cycle: int):
+        if len(self.meta_state.abstractions) <= 100: return
+
+        to_prune = []
+        for name, expr in self.meta_state.abstractions.items():
+            # Identity Check: Op = $0
+            if isinstance(expr, BSArg) and expr.index == 0:
+                to_prune.append(name)
+                continue
+            # Usage Check: unused for > 5 cycles
+            last_used = self.meta_state.usage_history.get(name, 0)
+            if current_cycle - last_used > 5:
+                to_prune.append(name)
+
+        for name in to_prune:
+            self.meta_state.remove_abstraction(name)
 
     def propose_mutation(self) -> Optional[Tuple[str, BSExpr]]:
         # Only propose after accumulating enough data
@@ -12095,6 +12123,11 @@ class PolicyModel:
                 self.W2 = np.random.uniform(-0.1, 0.1, size=(hidden_dim,))
                 self.b2 = 0.0
 
+    def update_lr(self, new_lr: float):
+        if self.use_torch and hasattr(self, "optimizer"):
+             self.optimizer.param_groups[0]["lr"] = new_lr
+        self.lr = new_lr
+
     def _sanitize_features(self, features: List[List[float]]) -> List[List[float]]:
         sanitized = []
         for row in features:
@@ -12102,6 +12135,7 @@ class PolicyModel:
             for v in row:
                 if not math.isfinite(v):
                     cleaned.append(0.0)
+
                 else:
                     cleaned.append(math.tanh(v))
             sanitized.append(cleaned)
@@ -12252,8 +12286,12 @@ class BottomUpSynthesizer:
             atoms.append("Arg")
         elif isinstance(expr, BSVal):
             atoms.append("Const")
-        return atoms
+        elif isinstance(expr, BSCustomOp):
+            atoms.append(expr.name)
+            for arg in expr.args:
+                atoms.extend(self._extract_atoms(arg))
 
+        return atoms
     def _ast_signature(self, expr: BSExpr) -> Tuple[int, int, Dict[str, int]]:
         counts = {"+": 0, "-": 0, "*": 0, "Rec": 0, "Arg": 0, "Const": 0}
         def walk(node: BSExpr, depth: int) -> Tuple[int, int]:
@@ -12322,6 +12360,21 @@ class BottomUpSynthesizer:
         # Form: def f(n): if n <= BASE_K: return BASE_V else: return {EXPR}
         if deadline and time.time() > deadline:
             raise TimeoutError("Synthesis timeout")
+        cycle_num = 0
+        try:
+            cycle_num = int(task_id.split("_")[1])
+        except:
+            pass
+
+        if self.mutator:
+            self.mutator.prune_grammar(cycle_num)
+
+        dynamic_depth = self.max_depth
+        if self.meta_state:
+            grammar_size = len(self.meta_state.abstractions)
+            if grammar_size > 20: dynamic_depth = 3
+            if grammar_size > 50: dynamic_depth = 2
+            print(f"[Synthesizer] Dynamic Depth: {dynamic_depth} (Grammar Size: {grammar_size})")
 
         if task_params is None:
             task_params = {}
@@ -12392,7 +12445,7 @@ class BottomUpSynthesizer:
         def clamp_reward(val: float) -> float:
             return max(-5.0, min(5.0, val))
 
-        for depth in range(self.max_depth):
+        for depth in range(dynamic_depth):
             if deadline and time.time() > deadline:
                 raise TimeoutError("Synthesis timeout")
             if not bank: break
@@ -12529,6 +12582,10 @@ class BottomUpSynthesizer:
 
                             if self.mutator:
                                 self.mutator.add_solution(expr)
+                            if self.meta_state:
+                                used_ops = self._extract_atoms(expr)
+                                for op in used_ops:
+                                    self.meta_state.record_usage(op, cycle_num)
 
                             code = self._to_python(expr, base_k, base_v)
                             # Return full info for safe verification
