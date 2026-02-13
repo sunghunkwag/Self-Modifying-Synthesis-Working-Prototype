@@ -1,0 +1,484 @@
+============================================================
+   🧬 FINAL ORGANIC EVOLUTION TEST (30 Cycles)
+   Condition: NO SEEDING, STRICT THRESHOLDS, COMPLEX TASKS
+============================================================
+
+[Cycle 1/30] Task: Linear n+1
+  > Grammar: []
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 0)
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+      [Success] Found solution at Depth 0: (1 + n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 2/30] Task: Linear n+2
+  > Grammar: []
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 0)
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+      [Depth 0] Candidates: 30 | Pruned: 22 | New Behaviors: 8 | Total Bank: 11
+      [Success] Found solution at Depth 1: (1 + (1 + n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 3/30] Task: Linear n+3
+  > Grammar: []
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 0)
+    [Organic] Blending learned priors: {'+': 0.105, '-': 0.067, '*': 0.083, 'Rec': 0.333, 'Arg': 0.091, 'Const': 0.05}
+    [Latent] Combined Priors: {'+': 0.105, '-': 0.067, '*': 0.083, 'Rec': 0.333, 'Arg': 0.091, 'Const': 0.05}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->3)...
+      [Depth 0] Candidates: 30 | Pruned: 21 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: (n + Rec(0))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: (((n + 2) - (n * n)) + n) (Len: 25)
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 0)
+    [Organic] Blending learned priors: {'+': 0.088, '-': 0.03, '*': 0.033, 'Rec': 0.333, 'Arg': 0.057, 'Const': 0.032}
+    [Latent] Combined Priors: {'+': 0.088, '-': 0.03, '*': 0.033, 'Rec': 0.333, 'Arg': 0.057, 'Const': 0.032}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->2)...
+      [Depth 0] Candidates: 30 | Pruned: 22 | New Behaviors: 8 | Total Bank: 11
+      [Depth 1] Candidates: 374 | Pruned: 308 | New Behaviors: 66 | Total Bank: 77
+      [Success] Found solution at Depth 2: ((n + n) + (Rec(0) - (n * n)))
+      [Latent] Learning success pattern...
+[Self-Critic] Failed: Generator solved in 0.365s
+
+[Cycle 4/30] Task: Square n*n
+  > Grammar: []
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 0)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+      [Success] Found solution at Depth 0: (n * n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 5/30] Task: Square+1 n*n+1
+  > Grammar: []
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 0)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+[GrammarMutator] Discovered Abstraction: Op0 = (1 + $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op0 = (1 + $0)
+[MetaState] Evolved Grammar v1: Added operator 'Op0'
+      [Depth 0] Candidates: 33 | Pruned: 24 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: Op0((n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: Op0() (Len: 5)
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 1)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=1->1)...
+[GrammarMutator] Discovered Abstraction: Op1 = ($0 + $1) (Arity 2)
+    [Meta-Hypothesis] Proposed Abstraction: Op1 = ($0 + $1)
+[MetaState] Evolved Grammar v2: Added operator 'Op1'
+      [Success] Found solution at Depth 0: Rec(0)
+      [Latent] Learning success pattern...
+[Self-Critic] Failed: Generator solved in 0.001s
+  🌟 [EVOLUTION] System invented 2 new operator(s)!
+
+[Cycle 6/30] Task: Square+2 n*n+2
+  > Grammar: ['Op0', 'Op1']
+[MetaState] Pruned operator 'Op1'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 1)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+[GrammarMutator] Discovered Abstraction: Op1 = ($0 + $1) (Arity 2)
+    [Meta-Hypothesis] Proposed Abstraction: Op1 = ($0 + $1)
+[MetaState] Evolved Grammar v4: Added operator 'Op1'
+      [Depth 0] Candidates: 42 | Pruned: 34 | New Behaviors: 8 | Total Bank: 11
+      [Success] Found solution at Depth 1: Op1(Op0(1), (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 7/30] Task: Quartic n^4
+  > Grammar: ['Op0', 'Op1']
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.001, 'Rec': 0.002, 'Arg': 0.001, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+      [Depth 0] Candidates: 42 | Pruned: 33 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: ((n * n) * (n * n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 8/30] Task: Linear n+1
+  > Grammar: ['Op0', 'Op1']
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.003, 'Rec': 0.002, 'Arg': 0.002, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.003, 'Rec': 0.002, 'Arg': 0.002, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op2 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = ($0 * $0)
+[MetaState] Evolved Grammar v5: Added operator 'Op2'
+      [Success] Found solution at Depth 0: Op0(n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 9/30] Task: Linear n+2
+  > Grammar: ['Op0', 'Op1', 'Op2']
+[MetaState] Pruned operator 'Op2'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.003, 'Rec': 0.002, 'Arg': 0.002, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.003, 'Rec': 0.002, 'Arg': 0.002, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op2 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = ($0 * $0)
+[MetaState] Evolved Grammar v7: Added operator 'Op2'
+      [Depth 0] Candidates: 45 | Pruned: 37 | New Behaviors: 8 | Total Bank: 11
+      [Success] Found solution at Depth 1: Op0(Op0(n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: n (Len: 1)
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 3)
+    [Organic] Blending learned priors: {'+': 0.002, '-': 0.001, '*': 0.003, 'Rec': 0.002, 'Arg': 0.002, 'Const': 0.001}
+    [Latent] Combined Priors: {'+': 0.002, '-': 0.001, '*': 0.003, 'Rec': 0.002, 'Arg': 0.002, 'Const': 0.001}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op3 = Op0($0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op3 = Op0($0)
+[MetaState] Evolved Grammar v8: Added operator 'Op3'
+      [Depth 0] Candidates: 48 | Pruned: 39 | New Behaviors: 9 | Total Bank: 12
+      [Depth 1] Candidates: 624 | Pruned: 560 | New Behaviors: 64 | Total Bank: 76
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+      [Depth 2] Candidates: 10000 | Pruned: 8647 | New Behaviors: 1353 | Total Bank: 1429
+[Self-Critic] SUCCESS: Generator TIMED OUT. n
+  [Critic] CHALLENGE INJECTED.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 10/30] Task: Adversarial Challenge
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3']
+[MetaState] Pruned operator 'Op2'
+[MetaState] Pruned operator 'Op3'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.006, '-': 0.009, '*': 0.003, 'Rec': 0.004, 'Arg': 0.005, 'Const': 0.007}
+    [Latent] Combined Priors: {'+': 0.006, '-': 0.009, '*': 0.003, 'Rec': 0.004, 'Arg': 0.005, 'Const': 0.007}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op2 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = ($0 * $0)
+[MetaState] Evolved Grammar v11: Added operator 'Op2'
+      [Depth 0] Candidates: 45 | Pruned: 36 | New Behaviors: 9 | Total Bank: 12
+      [Depth 1] Candidates: 612 | Pruned: 548 | New Behaviors: 64 | Total Bank: 76
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op3 = Op0($0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op3 = Op0($0)
+[MetaState] Evolved Grammar v12: Added operator 'Op3'
+      [Depth 2] Candidates: 10000 | Pruned: 8641 | New Behaviors: 1359 | Total Bank: 1435
+  [Error] Synthesis crashed: Synthesis timeout
+  [Result] FAILURE.
+
+[Cycle 11/30] Task: Linear n+3
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3']
+[MetaState] Pruned operator 'Op2'
+[MetaState] Pruned operator 'Op3'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.008, '-': 0.013, '*': 0.004, 'Rec': 0.006, 'Arg': 0.008, 'Const': 0.012}
+    [Latent] Combined Priors: {'+': 0.008, '-': 0.013, '*': 0.004, 'Rec': 0.006, 'Arg': 0.008, 'Const': 0.012}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->3)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op2 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = ($0 * $0)
+[MetaState] Evolved Grammar v15: Added operator 'Op2'
+      [Depth 0] Candidates: 45 | Pruned: 36 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: Op1(n, Rec(0))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+  [Critic] Generator seems comfortable. Injecting Challenge...
+[Self-Critic] Challenging with: n (Len: 1)
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 3)
+    [Organic] Blending learned priors: {'+': 0.008, '-': 0.013, '*': 0.004, 'Rec': 0.006, 'Arg': 0.008, 'Const': 0.012}
+    [Latent] Combined Priors: {'+': 0.008, '-': 0.013, '*': 0.004, 'Rec': 0.006, 'Arg': 0.008, 'Const': 0.012}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op3 = Op0($0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op3 = Op0($0)
+[MetaState] Evolved Grammar v16: Added operator 'Op3'
+      [Depth 0] Candidates: 48 | Pruned: 39 | New Behaviors: 9 | Total Bank: 12
+      [Depth 1] Candidates: 624 | Pruned: 560 | New Behaviors: 64 | Total Bank: 76
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op4 = Op1($0, $1) (Arity 3)
+    [Meta-Hypothesis] Proposed Abstraction: Op4 = Op1($0, $1)
+[MetaState] Evolved Grammar v17: Added operator 'Op4'
+      [Depth 2] Candidates: 10000 | Pruned: 9129 | New Behaviors: 871 | Total Bank: 947
+[Self-Critic] SUCCESS: Generator TIMED OUT. n
+  [Critic] CHALLENGE INJECTED.
+  🌟 [EVOLUTION] System invented 1 new operator(s)!
+
+[Cycle 12/30] Task: Adversarial Challenge
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3', 'Op4']
+[MetaState] Pruned operator 'Op2'
+[MetaState] Pruned operator 'Op3'
+[MetaState] Pruned operator 'Op4'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.009, '-': 0.015, '*': 0.005, 'Rec': 0.007, 'Arg': 0.011, 'Const': 0.016}
+    [Latent] Combined Priors: {'+': 0.009, '-': 0.015, '*': 0.005, 'Rec': 0.007, 'Arg': 0.011, 'Const': 0.016}
+    [Synthesizer] Growing atoms for 5 inputs (Base: n<=0->0)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op2 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = ($0 * $0)
+[MetaState] Evolved Grammar v21: Added operator 'Op2'
+      [Depth 0] Candidates: 45 | Pruned: 36 | New Behaviors: 9 | Total Bank: 12
+      [Depth 1] Candidates: 612 | Pruned: 548 | New Behaviors: 64 | Total Bank: 76
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op3 = Op0($0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op3 = Op0($0)
+[MetaState] Evolved Grammar v22: Added operator 'Op3'
+      [Depth 2] Candidates: 10000 | Pruned: 8641 | New Behaviors: 1359 | Total Bank: 1435
+  [Error] Synthesis crashed: Synthesis timeout
+  [Result] FAILURE.
+
+[Cycle 13/30] Task: Square n*n
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3']
+[MetaState] Pruned operator 'Op2'
+[MetaState] Pruned operator 'Op3'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 2)
+    [Organic] Blending learned priors: {'+': 0.01, '-': 0.017, '*': 0.005, 'Rec': 0.009, 'Arg': 0.013, 'Const': 0.019}
+    [Latent] Combined Priors: {'+': 0.01, '-': 0.017, '*': 0.005, 'Rec': 0.009, 'Arg': 0.013, 'Const': 0.019}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->0)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op2 = ($0 * $0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op2 = ($0 * $0)
+[MetaState] Evolved Grammar v25: Added operator 'Op2'
+      [Success] Found solution at Depth 0: Op2(n)
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 14/30] Task: Square+1 n*n+1
+  > Grammar: ['Op0', 'Op1', 'Op2']
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 3)
+    [Organic] Blending learned priors: {'+': 0.01, '-': 0.017, '*': 0.005, 'Rec': 0.009, 'Arg': 0.013, 'Const': 0.019}
+    [Latent] Combined Priors: {'+': 0.01, '-': 0.017, '*': 0.005, 'Rec': 0.009, 'Arg': 0.013, 'Const': 0.019}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->1)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discovered Abstraction: Op3 = Op0($0) (Arity 1)
+    [Meta-Hypothesis] Proposed Abstraction: Op3 = Op0($0)
+[MetaState] Evolved Grammar v26: Added operator 'Op3'
+      [Depth 0] Candidates: 48 | Pruned: 39 | New Behaviors: 9 | Total Bank: 12
+      [Success] Found solution at Depth 1: Op0(Op2(n))
+      [Latent] Learning success pattern...
+  [Result] SUCCESS.
+
+[Cycle 15/30] Task: Square+2 n*n+2
+  > Grammar: ['Op0', 'Op1', 'Op2', 'Op3']
+[MetaState] Pruned operator 'Op3'
+[Synthesizer] Dynamic Depth: 4 (Grammar Size: 3)
+    [Organic] Blending learned priors: {'+': 0.01, '-': 0.017, '*': 0.005, 'Rec': 0.009, 'Arg': 0.013, 'Const': 0.019}
+    [Latent] Combined Priors: {'+': 0.01, '-': 0.017, '*': 0.005, 'Rec': 0.009, 'Arg': 0.013, 'Const': 0.019}
+    [Synthesizer] Growing atoms for 4 inputs (Base: n<=0->2)...
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
+[GrammarMutator] Discarding Identity Op: $0
